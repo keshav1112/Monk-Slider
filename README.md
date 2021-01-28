@@ -1,0 +1,2 @@
+# Monk-Slider
+Vanilla Slider
