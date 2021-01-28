@@ -1,0 +1,289 @@
+@import "./mixins";
+
+/* Root Colors */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+ul {
+  list-style: none;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  font-family: "arial", sans-serif;
+  font-size: 0.7rem;
+  font-weight: normal;
+  margin: 0px;
+}
+
+/* Global Styles */
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+/* Global Class */
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  display: block;
+  padding: 1rem;
+}
+
+/* Preloader Styles */
+.preloader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background-color: var(--black);
+  display: grid;
+  @include justify-content(center);
+  @include align-items(center);
+  visibility: visible;
+  opacity: 1;
+  transition: all ease-in-out 2s;
+  transition-delay: 2s;
+  .preloader__items {
+    text-align: center;
+    img {
+      width: 8vw;
+    }
+    p {
+      margin-top: 2rem;
+      color: var(--white);
+      opacity: 0.7;
+      font-style: italic;
+    }
+  }
+}
+
+.hide-preloader {
+  z-index: -999;
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Slide Styles */
+
+.slide-container {
+  display: block;
+  position: relative;
+  overflow-x: hidden;
+  .slide__image {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    img {
+      height: 100%;
+    }
+  }
+  h2 {
+    width: 25vw;
+    color: var(--white);
+    text-decoration: underline solid var(--white) 1px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    transform: translate(70px, -50%);
+  }
+  .slide {
+    display: flex;
+    .item {
+      // background-color: var(--black);
+      position: relative;
+      vertical-align: top;
+      width: 100vw;
+      height: 100vh;
+      display: inline-flex;
+      padding: 1rem;
+      color: var(--white);
+    }
+    .slide__item-first h2,
+    .slide__item-first p {
+      position: absolute;
+    }
+    .slide__item-first h2 {
+      top: 80px;
+      left: -50px;
+    }
+    .slide__item-first p {
+      bottom: 85px;
+    }
+  }
+  .top-text-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .slide__item-last {
+    @include flexbox();
+    @include justify-content(space-between);
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    text-align: right;
+    z-index: -99;
+    background-color: var(--black);
+    bottom: 0;
+    padding: 1rem;
+    h2 {
+      width: auto;
+      position: static;
+      transform: translate(0px, 0px);
+    }
+    .slide__rightBlock {
+      p {
+        color: var(--white);
+        a {
+          text-decoration: underline;
+        }
+      }
+      .slide__socialMedia {
+        margin-top: 2rem;
+        li {
+          display: inline-block;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  .slide-arrow {
+    .slide__next,
+    .slide__prev {
+      position: fixed;
+      top: 50%;
+      -webkit-transform: translate(1rem, -50%);
+      -moz-transform: translate(1rem, -50%);
+      transform: translate(1rem, -50%);
+      cursor: pointer;
+      img {
+        width: 40px;
+      }
+    }
+    .slide__next {
+      right: 30px;
+    }
+
+    .slide__prev {
+      left: 0;
+    }
+  }
+
+  .slide-footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 1rem;
+    color: var(--white);
+    @include flexbox();
+    @include justify-content(space-between);
+    @include align-items(center);
+    .slide__navigation {
+      @include flexbox();
+      @include align-items(center);
+
+      .slide__pager {
+        border: 1px dotted var(--white);
+        .pager__item {
+          width: 20px;
+          height: 16px;
+          position: relative;
+          border-left: 1px dotted var(--white);
+          display: inline-block;
+          padding: 0.2rem;
+          line-height: 10px;
+          vertical-align: top;
+          text-align: center;
+          margin-left: -4px;
+          cursor: pointer;
+          &:first-child {
+            border-left: none;
+            margin-left: 0px;
+          }
+
+          .active {
+            width: 15px;
+            height: 11px;
+            background-color: var(--white);
+            position: absolute;
+            left: 2px;
+            top: 3px;
+          }
+        }
+      }
+      .slide__info {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+}
+
+.fade-in {
+  transition: all ease-in 0.5s;
+}
